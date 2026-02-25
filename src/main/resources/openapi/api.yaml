@@ -1,0 +1,150 @@
+openapi: 3.0.3
+
+info:
+  title: MS Persona
+  version: 2.0.0
+  description: >
+    API REST para la administración de datos del paciente y sus familiares.
+    Sistema hospitalario integrado con base de datos institucional.
+
+externalDocs:
+  description: Más información
+  url: https://www.hospital.gob.pe/PortalWeb/
+
+servers:
+  - url: https://www.hospital.gob.pe/api/v1
+    description: Servidor principal producción
+
+tags:
+  - name: Paciente
+    description: Operaciones relacionadas al paciente.
+
+paths:
+
+  /pacientes/{nroDocumento}:
+    get:
+      tags: [Paciente]
+      summary: Obtener paciente por número de documento.
+      description: |
+        Este método permitirá obtener al paciente por su número de documento.
+      operationId: obtenerPacientePorDocumento
+      parameters:
+        - name: nroDocumento
+          in: path
+          required: true
+          description: Número de documento del paciente (solo numérico).
+          schema:
+            type: string
+            pattern: "^[0-9]+$"
+            example: "73671872"
+
+      responses:
+        "200":
+          description: Operación exitosa.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObtenerPacienteResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+components:
+
+  responses:
+    BadRequest:
+      description: Solicitud inválida o datos mal formados.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    NotFound:
+      description: No se encontró el recurso solicitado.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+    InternalError:
+      description: Error inesperado en el servidor.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+
+  schemas:
+
+    ObtenerPacienteResponse:
+      type: object
+      required: [data, metadata]
+      properties:
+        data:
+          $ref: "#/components/schemas/Paciente"
+        metadata:
+          $ref: "#/components/schemas/Metadata"
+
+    Paciente:
+      type: object
+      properties:
+        tipoDocumento:
+          type: string
+          description: Tipo de Documento.
+          example: "DNI"
+
+        numDocumento:
+          type: string
+          description: Numero de Documento.
+          example: "34567890"
+
+        apePaterno:
+          type: string
+          description: Apellido paterno.
+          example: "RAMIREZ"
+
+        apeMaterno:
+          type: string
+          description: Apellido materno.
+          example: "FLORES"
+
+        nombres:
+          type: string
+          description: Nombres del paciente.
+          example: "JOSE"
+
+        fechaNac:
+          type: string
+          format: date
+          description: Fecha de nacimiento.
+          example: "1986-11-15"
+
+        sexo:
+          type: string
+          description: Código de sexo.
+          example: "000002"
+
+        estado:
+          type: string
+          description: Estado del registro.
+          example: "1"
+
+    Metadata:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: Código HTTP.
+          example: 200
+        message:
+          type: string
+          description: Mensaje del resultado.
+          example: "Operación exitosa."
+
+    ErrorResponse:
+      type: object
+      properties:
+        metadata:
+          $ref: "#/components/schemas/Metadata"
