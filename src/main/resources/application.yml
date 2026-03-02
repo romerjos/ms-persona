@@ -2,12 +2,15 @@ spring:
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=HospitalPrueba;trustServerCertificate=true
     username: sa
-    password: SqlServer2026!
+    password: Luhana42959076
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   application:
     name: ms-persona
   profiles:
     active: local
+  cloud:
+    config:
+      enabled: false
 server:
   port: 8082
   servlet:

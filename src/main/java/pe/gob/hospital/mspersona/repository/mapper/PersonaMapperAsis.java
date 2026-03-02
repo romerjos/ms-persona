@@ -17,4 +17,9 @@ public interface PersonaMapperAsis {
     @Options(statementType = StatementType.CALLABLE)
     Personal obtenerPorNumeroDocumento(String nroDocu);
 
+
+
+
+
+
 }

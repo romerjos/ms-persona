@@ -5,14 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.gob.hospital.mspersona.PacientesApiDelegate;
+import pe.gob.hospital.mspersona.api.PacientesApiDelegate;
 import pe.gob.hospital.mspersona.mapper.PersonalConverterMapper;
-import pe.gob.hospital.mspersona.model.*;
-import pe.gob.hospital.mspersona.model.Paciente;
-import pe.gob.hospital.mspersona.models.*;
+import pe.gob.hospital.mspersona.model.ObtenerPacienteResponse;
+import pe.gob.hospital.mspersona.model.Metadata;
 import pe.gob.hospital.mspersona.repository.impl.PersonaRepository;
 import pe.gob.hospital.mspersona.util.ValidadorUtil;
-
+import pe.gob.hospital.mspersona.model.Paciente;
+import pe.gob.hospital.mspersona.models.Personal;
 
 @Service
 @Slf4j

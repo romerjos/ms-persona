@@ -1,11 +1,11 @@
 package pe.gob.hospital.mspersona.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Data
-public class Paciente {
+
+public class Paciente extends pe.gob.hospital.mspersona.model.Paciente {
 
     private String CODTIPOD;
     private String DETALLED;

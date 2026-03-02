@@ -1,7 +1,7 @@
 package pe.gob.hospital.mspersona.mapper;
 
 import org.mapstruct.*;
-import pe.gob.hospital.mspersona.model.*;
+import pe.gob.hospital.mspersona.model.Paciente;
 import pe.gob.hospital.mspersona.models.Personal;
 
 import java.time.LocalDate;
