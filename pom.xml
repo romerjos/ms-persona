@@ -180,7 +180,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi/api.yaml</inputSpec>
+                                <inputSpec>${project.basedir}/src/main/resources/openapi/api.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>pe.gob.hospital.mspersona.api</apiPackage>
                             <modelPackage>pe.gob.hospital.mspersona.model</modelPackage>
